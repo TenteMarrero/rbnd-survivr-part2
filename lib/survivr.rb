@@ -2,6 +2,7 @@ require_relative "game"
 require_relative "tribe"
 require_relative "contestant"
 require_relative "jury"
+require 'colorizr'
 
 #After your tests pass, uncomment this code below
 #=========================================================
@@ -10,8 +11,8 @@ require_relative "jury"
 @contestants.map!{ |contestant| Contestant.new(contestant) }.shuffle!
 
 # Create two new tribes with names
-@coyopa = Tribe.new(name: "Pagong", members: @contestants.shift(10))
-@hunapu = Tribe.new(name: "Tagi", members: @contestants.shift(10))
+@coyopa = Tribe.new(name: "Pagong", members: @contestants.shift(10), color: "red")
+@hunapu = Tribe.new(name: "Tagi", members: @contestants.shift(10), color: "green")
 
 # Create a new game of Survivor
 @borneo = Game.new(@coyopa, @hunapu)
@@ -22,12 +23,14 @@ require_relative "jury"
 def phase_one
   8.times do
     @borneo.individual_immunity_challenge
+    puts ""
   end
 end
 
 def phase_two
   3.times do
     @merge_tribe.tribal_council(immune: @merge_tribe.select_immune)
+    puts ""
   end
 end
 
@@ -35,6 +38,7 @@ def phase_three
   7.times do
     member_eliminated = @merge_tribe.tribal_council(immune: @merge_tribe.select_immune)
     @jury.add_member member_eliminated
+    puts ""
   end
 end
 
@@ -43,10 +47,13 @@ end
 #=========================================================
 phase_one #8 eliminations
 @merge_tribe = @borneo.merge("Cello") # After 8 eliminations, merge the two tribes together
+@merge_tribe.color = "yellow"
 phase_two #3 more eliminations
 @jury = Jury.new
 phase_three #7 elminiations become jury members
 finalists = @merge_tribe.members #set finalists
 vote_results = @jury.cast_votes(finalists) #Jury members report votes
+puts ""
 @jury.report_votes(vote_results) #Jury announces their votes
+puts ""
 @jury.announce_winner(vote_results) #Jury announces final winner
