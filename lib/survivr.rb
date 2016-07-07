@@ -52,6 +52,8 @@ phase_two #3 more eliminations
 @jury = Jury.new
 phase_three #7 elminiations become jury members
 finalists = @merge_tribe.members #set finalists
+finalists[0].add_color("blue")
+finalists[1].add_color("pink")
 vote_results = @jury.cast_votes(finalists) #Jury members report votes
 puts ""
 @jury.report_votes(vote_results) #Jury announces their votes

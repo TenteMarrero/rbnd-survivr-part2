@@ -11,7 +11,7 @@ class Tribe
   
   def tribal_council(options = {})
     immune = options[:immune]
-    puts "#{immune.to_s.capitalize} won the individual immunity challenge and is safe from elimination."
+    puts "#{immune.to_s_with_color} won the individual immunity challenge and is safe from elimination."
     delete_one_member immune
   end
   
@@ -33,12 +33,12 @@ class Tribe
   end
 
   def print_tribal_council_results(member_to_delete)
-    puts "#{member_to_delete.to_s.capitalize} was voted off the island."
+    puts "#{member_to_delete.to_s_with_color} was voted off the island."
     puts "Remaining tribemates on #{@name.capitalize.send(@color)} are: #{print_members}"
   end
 
   def print_members
-    members_capitalized = @members.map {|member| member.to_s.capitalize}
+    members_capitalized = @members.map {|member| member.to_s_with_color}
     "#{members_capitalized.join(', ')}"
   end
 end
