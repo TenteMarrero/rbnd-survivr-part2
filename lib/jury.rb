@@ -17,8 +17,8 @@ class Jury
     return finalists_votes
   end
   def report_votes(finalists_votes)
-    finalists_votes.each do |contestant_name, votes|
-      puts "#{contestant_name.to_s_with_color} has #{votes} votes" 
+    finalists_votes.each do |contestant, votes|
+      puts "#{contestant.to_s_with_color} has #{votes} votes" 
     end
   end
   def announce_winner(finalists_votes)
