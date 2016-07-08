@@ -1,0 +1,12 @@
+GEM
+  specs:
+    colorizr (0.0.1)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  colorizr (= 0.0.1)
+
+BUNDLED WITH
+   1.12.5
