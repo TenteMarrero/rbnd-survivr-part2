@@ -22,22 +22,21 @@ require 'colorizr'
 #This is where you will write your code for the three phases
 def phase_one
   8.times do
-    @borneo.individual_immunity_challenge
+    @borneo.immunity_challenge.tribal_council
     puts ""
   end
 end
 
 def phase_two
   3.times do
-    @merge_tribe.tribal_council(immune: @merge_tribe.select_immune)
+    @borneo.individual_immunity_challenge
     puts ""
   end
 end
 
 def phase_three
   7.times do
-    member_eliminated = @merge_tribe.tribal_council(immune: @merge_tribe.select_immune)
-    @jury.add_member member_eliminated
+    @jury.add_member @borneo.individual_immunity_challenge
     puts ""
   end
 end

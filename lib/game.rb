@@ -2,7 +2,7 @@ class Game
   attr_reader :tribes
   
   def initialize(*tribes)
-    @tribes = tribes
+    @tribes = ([] << tribes).flatten!
   end
   
   def add_tribe(tribe)
@@ -18,12 +18,17 @@ class Game
   end
   
   def merge(name)
-    Tribe.new(name: name, members: get_all_tribes_members)
+    new_tribe = Tribe.new(name: name, members: get_all_tribes_members)
+    clear_tribes
+    @tribes << new_tribe
+    return new_tribe
   end
 
   def individual_immunity_challenge
     tribe = immunity_challenge
-    tribe.tribal_council(immune: tribe.select_immune)
+    immune = tribe.members.sample
+    puts "#{immune.to_s_with_color} won the individual immunity challenge and is safe from elimination."
+    tribe.tribal_council(immune: immune)
   end
 
   private

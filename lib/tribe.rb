@@ -11,16 +11,11 @@ class Tribe
   
   def tribal_council(options = {})
     immune = options[:immune]
-    puts "#{immune.to_s_with_color} won the individual immunity challenge and is safe from elimination."
     delete_one_member immune
   end
   
   def to_s
     @name
-  end
-
-  def select_immune
-    @members.sample
   end
 
   private
